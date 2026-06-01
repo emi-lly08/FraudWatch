@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import *
+from django.shortcuts import render
 from django.views import View
+from .models import *
 
 
 class IndexView(View):
@@ -8,78 +8,79 @@ class IndexView(View):
         return render(request, 'index.html')
 
 
-class GolpesView(View):
+class TipoUsuarioView(View):
+    def get(self, request, *args, **kwargs):
+        tipousuarios = TipoUsuario.objects.all()
+        return render(request, 'tipousuario.html', {'tipousuarios': tipousuarios})
+
+
+class UsuarioView(View):
+    def get(self, request, *args, **kwargs):
+        usuarios = Usuario.objects.all()
+        return render(request, 'usuario.html', {'usuarios': usuarios})
+
+
+class CategoriaGolpeView(View):
+    def get(self, request, *args, **kwargs):
+        categorias = CategoriaGolpe.objects.all()
+        return render(request, 'categoriagolpe.html', {'categorias': categorias})
+
+
+class GolpeDigitalView(View):
     def get(self, request, *args, **kwargs):
         golpes = GolpeDigital.objects.all()
-
-        return render(
-            request,
-            'golpes.html',
-            {'golpes': golpes}
-        )
+        return render(request, 'golpedigital.html', {'golpes': golpes})
 
 
-class LinksView(View):
+class LinkSuspeitoView(View):
     def get(self, request, *args, **kwargs):
         links = LinkSuspeito.objects.all()
-
-        return render(
-            request,
-            'links.html',
-            {'links': links}
-        )
+        return render(request, 'linksuspeito.html', {'links': links})
 
 
-class MensagensView(View):
+class PlataformaView(View):
+    def get(self, request, *args, **kwargs):
+        plataformas = Plataforma.objects.all()
+        return render(request, 'plataforma.html', {'plataformas': plataformas})
+
+
+class MensagemFraudulentaView(View):
     def get(self, request, *args, **kwargs):
         mensagens = MensagemFraudulenta.objects.all()
-
-        return render(
-            request,
-            'mensagens.html',
-            {'mensagens': mensagens}
-        )
+        return render(request, 'mensagemfraudulenta.html', {'mensagens': mensagens})
 
 
 class QuizView(View):
     def get(self, request, *args, **kwargs):
         quizzes = Quiz.objects.all()
-
-        return render(
-            request,
-            'quiz.html',
-            {'quizzes': quizzes}
-        )
+        return render(request, 'quiz.html', {'quizzes': quizzes})
 
 
-class DicasView(View):
+class PerguntaView(View):
+    def get(self, request, *args, **kwargs):
+        perguntas = Pergunta.objects.all()
+        return render(request, 'pergunta.html', {'perguntas': perguntas})
+
+
+class RespostaView(View):
+    def get(self, request, *args, **kwargs):
+        respostas = Resposta.objects.all()
+        return render(request, 'resposta.html', {'respostas': respostas})
+
+
+class DicaSegurancaView(View):
     def get(self, request, *args, **kwargs):
         dicas = DicaSeguranca.objects.all()
-
-        return render(
-            request,
-            'dicas.html',
-            {'dicas': dicas}
-        )
+        return render(request, 'dicaseguranca.html', {'dicas': dicas})
 
 
-class DenunciasView(View):
+class DenunciaView(View):
     def get(self, request, *args, **kwargs):
         denuncias = Denuncia.objects.all()
-
-        return render(
-            request,
-            'denuncias.html',
-            {'denuncias': denuncias}
-        )
+        return render(request, 'denuncia.html', {'denuncias': denuncias})
 
 
-class NotificacoesView(View):
+class NotificacaoView(View):
     def get(self, request, *args, **kwargs):
         notificacoes = Notificacao.objects.all()
-
-        return render(
-            request,
-            'notificacoes.html',
-            {'notificacoes': notificacoes}
-        )
+        return render(request, 'notificacao.html', {'notificacoes': notificacoes})
