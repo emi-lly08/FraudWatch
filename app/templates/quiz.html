@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - FraudWatch</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body style="background-color:#f5f7fa;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <a class="navbar-brand" href="/">
+        FraudWatch
+    </a>
+</nav>
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-danger text-white">
+            <h3>Quiz de Segurança Digital</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form id="quizForm">
+
+                <h5>1. Antes de inserir dados pessoais em um site, o que deve ser verificado?</h5>
+
+                <input type="radio" name="q1" value="0"> A cor do site<br>
+                <input type="radio" name="q1" value="0"> Quantidade de anúncios<br>
+                <input type="radio" name="q1" value="1"> Se o site é confiável e seguro<br>
+                <input type="radio" name="q1" value="0"> O nome do navegador<br>
+
+                <hr>
+
+                <h5>2. O que caracteriza um golpe de engenharia social?</h5>
+
+                <input type="radio" name="q2" value="1"> Manipulação da vítima para obter informações<br>
+                <input type="radio" name="q2" value="0"> Compra segura pela internet<br>
+                <input type="radio" name="q2" value="0"> Atualização do sistema<br>
+                <input type="radio" name="q2" value="0"> Cadastro em redes sociais<br>
+
+                <hr>
+
+                <h5>3. Como confirmar se um PIX foi realmente recebido?</h5>
+
+                <input type="radio" name="q3" value="0"> Confiar no comprovante enviado<br>
+                <input type="radio" name="q3" value="1"> Verificando o saldo no aplicativo do banco<br>
+                <input type="radio" name="q3" value="0"> Perguntar para amigos<br>
+                <input type="radio" name="q3" value="0"> Atualizar o celular<br>
+
+                <hr>
+
+                <h5>4. O que deve ser feito ao receber um código de verificação no WhatsApp que você não solicitou?</h5>
+
+                <input type="radio" name="q4" value="0"> Compartilhar o código<br>
+                <input type="radio" name="q4" value="1"> Não compartilhar o código<br>
+                <input type="radio" name="q4" value="0"> Publicar em redes sociais<br>
+                <input type="radio" name="q4" value="0"> Enviar para desconhecidos<br>
+
+                <hr>
+
+                <h5>5. Qual é o principal objetivo de um ataque de phishing?</h5>
+
+                <input type="radio" name="q5" value="0"> Melhorar a segurança<br>
+                <input type="radio" name="q5" value="0"> Fazer propaganda<br>
+                <input type="radio" name="q5" value="1"> Roubar informações pessoais<br>
+                <input type="radio" name="q5" value="0"> Atualizar aplicativos<br>
+
+                <hr>
+
+                <button type="button"
+                        class="btn btn-success btn-lg btn-block"
+                        onclick="corrigirQuiz()">
+                    Finalizar Quiz
+                </button>
+
+            </form>
+
+            <div id="resultado" class="mt-4"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function corrigirQuiz(){
+
+    let pontos = 0;
+
+    for(let i = 1; i <= 5; i++){
+
+        let resposta = document.querySelector(
+            'input[name="q' + i + '"]:checked'
+        );
+
+        if(resposta && resposta.value == "1"){
+            pontos++;
+        }
+    }
+
+    let nota = (pontos * 2).toFixed(1);
+
+    let mensagem = "";
+
+    if(pontos == 5){
+        mensagem = "🏆 Excelente!";
+    }
+    else if(pontos >= 3){
+        mensagem = "👍 Bom trabalho!";
+    }
+    else{
+        mensagem = "⚠️ Estude mais sobre segurança digital.";
+    }
+
+    document.getElementById("resultado").innerHTML = `
+        <div class="alert alert-info text-center">
+            <h3>${mensagem}</h3>
+            <h4>Você acertou ${pontos} de 5 perguntas</h4>
+            <h4>Nota: ${nota}</h4>
+        </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
